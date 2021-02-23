@@ -123,3 +123,9 @@ STATIC_URL = '/static/'
 # Custom User Login Logout Redirect
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# Store emails in console/file
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+
+# Configure project to store emails in a local folder called sent_emails
+EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
