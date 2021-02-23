@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
-
-{% block title %}Login{% endblock %}
-
+{% block title %}Log In{% endblock %}
 {% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active">Log In</li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'signup' %}">Sign Up</a></li>
+        </ol>
+    </nav>
     <h2>Log In</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Log In</button>
-    </form>
-{% endblock %}¬
+    {% if user.is_authenticated %}
+        <p>
+            You are logged in.
+            <br/>
+            You are already signed up.
+        </p>
+        <br/>
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% else %}
+        <form method="post">
+            <div class="form-group">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

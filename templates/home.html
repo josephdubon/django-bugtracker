@@ -3,12 +3,34 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Home</li>
+            <li class="breadcrumb-item " aria-current="page"><a href="{% url 'login' %}">Log In</a></li>
+            <li class="breadcrumb-item " aria-current="page"><a href="{% url 'signup' %}">Sign Up</a></li>
+        </ol>
+    </nav>
     {% if user.is_authenticated %}
-        Hi {{ user.username }}!
-        <p><a href="{% url 'logout' %}">Log Out</a></p>
-        <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+        <small>username: {{ user.username }} / logged in: yes</small>
+        <br/>
+        <h1>Hello, {{ user.displayname }}!</h1>
+        <p>Congratulations, you are logged in.</p>
+        <br/>
+        <p>
+            <a href="{% url 'logout' %}">Log Out</a> |
+            <a href="{% url 'password_reset' %}">Reset Password</a>
+        </p>
     {% else %}
-        <p>You are not logged in</p>
-        <a href="{% url 'login' %}">Log In</a>
+        <small>username: -please login-
+            <br/>
+            logged in: no</small>
+        <br/>
+        <h2>Hello, Friend!</h2>
+        <p>Please login or sign up.</p>
+        <br/>
+        <small>
+            <a href="{% url 'login' %}">Log In</a> |
+            <a href="{% url 'signup' %}">Sign Up</a>
+        </small>
     {% endif %}
 {% endblock %}
