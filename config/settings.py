@@ -129,3 +129,6 @@ EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 
 # Configure project to store emails in a local folder called sent_emails
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+
+# Use custom user model
+AUTH_USER_MODEL = 'accounts.CustomUser'
