@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ author.username }}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item " aria-current="page"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active">Author</li>
+        </ol>
+    </nav>
+    <h1>{{ heading }}</h1>
+    {% if user.is_authenticated %}
+        <h1>Ticket: {{ author.username }}</h1>
+        <p>
+            This person has created the following tickets:
+        </p>
+        <ul>
+            {% for ticket in tickets %}
+                <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
+                <li>Description: {{ ticket.description }}</li>
+                <li>Time Created: {{ ticket.time_created }}</li>
+            {% endfor %}
+        </ul>
+        <p>
+            <a href="{% url 'logout' %}">Log Out</a> |
+            <a href="{% url 'password_reset' %}">Reset Password</a>
+        </p>
+    {% else %}
+        <small>username: -please login-
+            <br/>
+            logged in: no</small>
+        <br/>
+        <h2>Hello, Friend!</h2>
+        <p>Please login</p>
+        <br/>
+        <small>
+            <a href="{% url 'login' %}">Log In</a> |
+            <a href="{% url 'password_reset' %}">Reset Password</a>
+
+        </small>
+    {% endif %}
+{% endblock %}
