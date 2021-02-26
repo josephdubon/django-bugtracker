@@ -5,15 +5,12 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home' %}">Home</a></li>
             <li class="breadcrumb-item active">Log In</li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'signup' %}">Sign Up</a></li>
         </ol>
     </nav>
     <h2>Log In</h2>
     {% if user.is_authenticated %}
         <p>
             You are logged in.
-            <br/>
-            You are already signed up.
         </p>
         <br/>
         <p><a href="{% url 'logout' %}">Log Out</a></p>
