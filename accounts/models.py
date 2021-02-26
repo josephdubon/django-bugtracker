@@ -12,4 +12,4 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = ['displayname', 'homepage']
 
     def __str__(self):
-        return f'{self.username} {self.id} | {self.password} | {self.displayname} | {self.homepage}'
+        return f'{self.username} | {self.displayname} | {self.homepage}'
