@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Create New Ticket{% endblock %}
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item " aria-current="page"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active">Create Ticket</li>
+            <li class="breadcrumb-item " aria-current="page"><a href="{% url 'logout' %}">Log Out</a></li>
+        </ol>
+    </nav>
+    <h2>Create New Ticket</h2>
+    {% if user.is_authenticated %}
+        <p>Please be mindful of Ticket titles and Descriptions!</p>
+        <br/>
+        <form method="post">
+            <div class="form-group">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    {% else %}
+
+    {% endif %}
+{% endblock %}
