@@ -3,18 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Home</li>
-            {% if user.is_authenticated %}
-                <li class="breadcrumb-item " aria-current="page"><a href="{% url 'create_ticket' %}">Create Ticket</a>
-                </li>
-                <li class="breadcrumb-item " aria-current="page"><a href="{% url 'logout' %}">Log Out</a></li>
-            {% else %}
-                <li class="breadcrumb-item " aria-current="page"><a href="{% url 'login' %}">Log In</a></li>
-            {% endif %}
-        </ol>
-    </nav>
     <h1>{{ heading }}</h1>
     {% if user.is_authenticated %}
         <h4>Hello, {{ user.displayname }}!</h4>
@@ -24,9 +12,6 @@
         {#    NEW TICKETS HERE    #}
         <h2>NEW TICKETS</h2>
         {% for ticket in tickets_new %}
-            <li>
-                Status: {{ ticket.status_of_ticket }}
-            </li>
             <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
             <li>Description: {{ ticket.description }}</li>
             <li>Time Created: {{ ticket.time_created }}</li>
@@ -40,9 +25,6 @@
         {#    IN PROGRESS TICKETS HERE    #}
         <h2>IN PROGRESS TICKETS</h2>
         {% for ticket in tickets_in_progress %}
-            <li>
-                Status: {{ ticket.status_of_ticket }}
-            </li>
             <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
             <li>Description: {{ ticket.description }}</li>
             <li>Time Created: {{ ticket.time_created }}</li>
@@ -56,9 +38,6 @@
         {#    DONE TICKETS HERE    #}
         <h2>COMPLETED TICKETS</h2>
         {% for ticket in tickets_done %}
-            <li>
-                Status: {{ ticket.status_of_ticket }}
-            </li>
             <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
             <li>Description: {{ ticket.description }}</li>
             <li>Time Created: {{ ticket.time_created }}</li>
@@ -73,9 +52,6 @@
         {#    INVALID TICKETS HERE    #}
         <h3>INVALID TICKETS</h3>
         {% for ticket in tickets_invalid %}
-            <li>
-                Status: {{ ticket.status_of_ticket }}
-            </li>
             <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
             <li>Description: {{ ticket.description }}</li>
             <li>Time Created: {{ ticket.time_created }}</li>
