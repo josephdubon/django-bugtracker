@@ -5,15 +5,32 @@
 {% block content %}
     <h1>{{ heading }}</h1>
     {% if user.is_authenticated %}
-        <h1>Ticket: {{ ticket.title }}</h1>
-        <li><small><a href="/edit-ticket/{{ ticket.id }}">edit ticket</a></small></li>
-        <li>Status: {{ ticket.status_of_ticket }}</li>
-        <li>Description: {{ ticket.description }}</li>
-        <li>Time Created: {{ ticket.time_created }}</li>
-        <li>
-            Created By: <a
-                href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
-        </li>
+        <h1>Title: {{ ticket.title }}</h1>
+        <p>Ticket details:</p>
+
+        {#    START NEW TICKETS HERE    #}
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time Created</th>
+                <th scope="col">Created By</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row"><a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></th>
+                <td>{{ ticket.description }}</td>
+                <td>{{ ticket.time_created }}</td>
+                <td><a
+                        href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        {#    END NEW TICKETS HERE    #}
+
         <br/>
         <p>
             <a href="{% url 'logout' %}">Log Out</a> |

@@ -5,20 +5,34 @@
 {% block content %}
     <h1>{{ heading }}</h1>
     {% if user.is_authenticated %}
-        <h1>Author: {{ author }}</h1>
-        <p>
-            This person has created the following tickets:
-        </p>
-        <ul>
+        <h1>Username: {{ author }}</h1>
+        <p>This user has created the following tickets:</p>
+        {#    START NEW TICKETS HERE    #}
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time Created</th>
+                <th scope="col">Created By</th>
+            </tr>
+            </thead>
+            <tbody>
             {% for ticket in tickets %}
-                <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
-                <li>Status: {{ ticket.status_of_ticket }}</li>
-                <li>Description: {{ ticket.description }}</li>
-                <li>Created By: {{ ticket.author_of_ticket.displayname }}</li>
-                <li>Time Created: {{ ticket.time_created }}</li>
-                <br/>
+                <tr>
+                    <th scope="row"><a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></th>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.time_created }}</td>
+                    <td><a
+                            href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
+                    </td>
+                </tr>
             {% endfor %}
-        </ul>
+            </tbody>
+        </table>
+        {#    END NEW TICKETS HERE    #}
+
+
         <p>
             <a href="{% url 'logout' %}">Log Out</a> |
             <a href="{% url 'password_reset' %}">Reset Password</a>

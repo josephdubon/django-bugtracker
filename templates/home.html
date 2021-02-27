@@ -1,67 +1,123 @@
 {% extends 'base.html' %}
-
 {% block title %}Home{% endblock %}
-
 {% block content %}
     <h1>{{ heading }}</h1>
     {% if user.is_authenticated %}
         <h4>Hello, {{ user.displayname }}!</h4>
         <p>Congratulations, you are logged in as <strong>{{ user.username }}</strong>.</p>
         <br/>
-
-        {#    NEW TICKETS HERE    #}
-        <h2>NEW TICKETS</h2>
-        {% for ticket in tickets_new %}
-            <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
-            <li>Description: {{ ticket.description }}</li>
-            <li>Time Created: {{ ticket.time_created }}</li>
-            <li>
-                Created By: <a
-                    href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
-            </li>
-            <br/>
-        {% endfor %}
-
-        {#    IN PROGRESS TICKETS HERE    #}
-        <h2>IN PROGRESS TICKETS</h2>
-        {% for ticket in tickets_in_progress %}
-            <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
-            <li>Description: {{ ticket.description }}</li>
-            <li>Time Created: {{ ticket.time_created }}</li>
-            <li>
-                Created By: <a
-                    href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
-            </li>
-            <br/>
-        {% endfor %}
-
-        {#    DONE TICKETS HERE    #}
-        <h2>COMPLETED TICKETS</h2>
-        {% for ticket in tickets_done %}
-            <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
-            <li>Description: {{ ticket.description }}</li>
-            <li>Time Created: {{ ticket.time_created }}</li>
-            <li>
-                Created By: <a
-                    href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
-            </li>
-            <br/>
-        {% endfor %}
-
+        {#    START NEW TICKETS HERE    #}
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+            <tr>
+                <th>
+                    <h2>NEW TICKETS</h2>
+                </th>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time Created</th>
+                <th scope="col">Created By</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ticket in tickets_new %}
+                <tr>
+                    <th scope="row"><a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></th>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.time_created }}</td>
+                    <td><a
+                            href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {#    END NEW TICKETS HERE    #}
+        {#    START IN PROGRESS TICKETS HERE    #}
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+            <tr>
+                <th>
+                    <h2>IN PROGRESS</h2>
+                </th>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time Created</th>
+                <th scope="col">Created By</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ticket in tickets_in_progress %}
+                <tr>
+                    <th scope="row"><a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></th>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.time_created }}</td>
+                    <td><a
+                            href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {#    END IN PROGRESS TICKETS HERE    #}
+        {#    START DONE TICKETS HERE      #}
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+            <th>
+                <h2>DONE TICKETS</h2>
+            </th>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time Created</th>
+                <th scope="col">Created By</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ticket in tickets_done %}
+                <tr>
+                    <th scope="row"><a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></th>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.time_created }}</td>
+                    <td><a
+                            href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {#    END DONE TICKETS HERE    #}
         <hr>
-        {#    INVALID TICKETS HERE    #}
-        <h3>INVALID TICKETS</h3>
-        {% for ticket in tickets_invalid %}
-            <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
-            <li>Description: {{ ticket.description }}</li>
-            <li>Time Created: {{ ticket.time_created }}</li>
-            <li>
-                Created By: <a
-                    href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
-            </li>
-            <br/>
-        {% endfor %}
-
+        {#    START INVALID TICKETS HERE      #}
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+            <tr>
+                <th>
+                    <h2>INVALID TICKETS</h2>
+                </th>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time Created</th>
+                <th scope="col">Created By</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ticket in tickets_invalid %}
+                <tr>
+                    <th scope="row"><a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></th>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.time_created }}</td>
+                    <td><a
+                            href="/authors/{{ ticket.author_of_ticket.id }}">{{ ticket.author_of_ticket.username }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {#    END DONE TICKETS HERE    #}
         <br/>
         <p>
             <a href="{% url 'logout' %}">Log Out</a> |
@@ -73,7 +129,6 @@
         <small>
             <a href="{% url 'login' %}">Log In</a> |
             <a href="{% url 'password_reset' %}">Reset Password</a>
-
         </small>
     {% endif %}
 {% endblock %}
