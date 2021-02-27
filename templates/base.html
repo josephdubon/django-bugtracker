@@ -11,6 +11,19 @@
 </head>
 <body>
 <main class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item " aria-current="page"><a href="{% url 'home' %}">Home</a>
+                {% if user.is_authenticated %}
+                    <li class="breadcrumb-item " aria-current="page"><a href="{% url 'create_ticket' %}">Create
+                        Ticket</a>
+                    </li>
+                    <li class="breadcrumb-item " aria-current="page"><a href="{% url 'logout' %}">Log Out</a></li>
+                {% else %}
+                    <li class="breadcrumb-item " aria-current="page"><a href="{% url 'login' %}">Log In</a></li>
+                {% endif %}
+        </ol>
+    </nav>
     {% block content %}
     {% endblock %}
 </main>
