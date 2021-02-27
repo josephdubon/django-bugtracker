@@ -15,11 +15,11 @@ def index(request):
     # ('In Progress', 'In Progress'),
     # ('Done', 'Done'),
     # ('Invalid', 'Invalid'),
-    tickets = Ticket.objects.all()
-    tickets_new = Ticket.objects.filter(status_of_ticket='New')
-    tickets_in_progress = Ticket.objects.filter(status_of_ticket='In Progress')
-    tickets_done = Ticket.objects.filter(status_of_ticket='Done')
-    tickets_invalid = Ticket.objects.filter(status_of_ticket='Invalid')
+    tickets = Ticket.objects.all().order_by('-time_created')
+    tickets_new = Ticket.objects.filter(status_of_ticket='New').order_by('-time_created')
+    tickets_in_progress = Ticket.objects.filter(status_of_ticket='In Progress').order_by('-time_created')
+    tickets_done = Ticket.objects.filter(status_of_ticket='Done').order_by('-time_created')
+    tickets_invalid = Ticket.objects.filter(status_of_ticket='Invalid').order_by('-time_created')
 
     return render(request, 'home.html', {
         'heading': 'Bug Tracker App',
@@ -45,7 +45,7 @@ def ticket_detail(request, ticket_id):
 @login_required
 def author_detail(request, author_id):
     author = Ticket.objects.filter(author_of_ticket=author_id)
-    tickets = Ticket.objects.filter(author_of_ticket_id=author_id)
+    tickets = Ticket.objects.filter(author_of_ticket_id=author_id).order_by('-time_created')
     return render(request, 'author_detail.html', {
         'author': author.first().author_of_ticket.username,
         'tickets': tickets
