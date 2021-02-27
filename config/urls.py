@@ -37,6 +37,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('tickets/<int:ticket_id>/', views.ticket_detail, name='ticket_detail'),
     path('authors/<int:author_id>/', views.author_detail, name='author_detail'),
-    path('create_ticket/', views.create_ticket, name='create_ticket'),
+    path('create-ticket/', views.create_ticket, name='create_ticket'),
+    path('edit-ticket/<int:ticket_id>/', views.edit_ticket, name='edit_ticket'),
 
 ]
