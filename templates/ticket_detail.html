@@ -3,17 +3,11 @@
 {% block title %}{{ ticket.title }}{% endblock %}
 
 {% block content %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item " aria-current="page"><a href="{% url 'home' %}">Home</a></li>
-            <li class="breadcrumb-item active">Ticket</li>
-        </ol>
-    </nav>
     <h1>{{ heading }}</h1>
     {% if user.is_authenticated %}
         <h1>Ticket: {{ ticket.title }}</h1>
-        <br/>
-        <li>Title: {{ ticket.title }}</li>
+        <li><small><a href="/edit-ticket/{{ ticket.id }}">edit ticket</a></small></li>
+        <li>Status: {{ ticket.status_of_ticket }}</li>
         <li>Description: {{ ticket.description }}</li>
         <li>Time Created: {{ ticket.time_created }}</li>
         <li>
