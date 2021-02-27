@@ -16,7 +16,7 @@ class EditTicketForm(forms.Form):
     ]
 
     title = forms.CharField(max_length=50)
-    status_of_ticket = forms.ChoiceField(choices=TICKET_STATUS)
+    # status_of_ticket = forms.ChoiceField(choices=TICKET_STATUS)
 
     description = forms.CharField(max_length=350)
     # author_of_ticket = forms.ForeignKey(settings.AUTH_USER_MODEL,

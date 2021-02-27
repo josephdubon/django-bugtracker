@@ -6,6 +6,8 @@
     <h1>{{ heading }}</h1>
     {% if user.is_authenticated %}
         <h1>Title: {{ ticket.title }}</h1>
+        <small><a href="/edit-ticket/{{ ticket.id }}">edit ticket</a></small>
+
         <p>Ticket details:</p>
 
         {#    START NEW TICKETS HERE    #}

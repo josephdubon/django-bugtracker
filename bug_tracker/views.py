@@ -91,7 +91,6 @@ def edit_ticket(request, ticket_id):
         if form.is_valid():
             data = form.cleaned_data
             ticket.title = data["title"]
-            ticket.status_of_ticket = data["status_of_ticket"]
             ticket.description = data["description"]
             ticket.save()
         return HttpResponseRedirect(reverse("ticket_detail", args=[ticket.id]))
@@ -99,7 +98,6 @@ def edit_ticket(request, ticket_id):
     data = {
         "title": ticket.title,
         "description": ticket.description,
-        "status_of_ticket": ticket.status_of_ticket,
     }
     form = EditTicketForm(initial=data)
     return render(request, "edit_ticket.html", {"form": form})
