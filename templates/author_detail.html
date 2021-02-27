@@ -3,23 +3,20 @@
 {% block title %}{{ author.username }}{% endblock %}
 
 {% block content %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item " aria-current="page"><a href="{% url 'home' %}">Home</a></li>
-            <li class="breadcrumb-item active">Author</li>
-        </ol>
-    </nav>
     <h1>{{ heading }}</h1>
     {% if user.is_authenticated %}
-        <h1>Author: {{ author.username }}</h1>
+        <h1>Author: {{ author }}</h1>
         <p>
             This person has created the following tickets:
         </p>
         <ul>
             {% for ticket in tickets %}
                 <li>Title: <a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></li>
+                <li>Status: {{ ticket.status_of_ticket }}</li>
                 <li>Description: {{ ticket.description }}</li>
+                <li>Created By: {{ ticket.author_of_ticket.displayname }}</li>
                 <li>Time Created: {{ ticket.time_created }}</li>
+                <br/>
             {% endfor %}
         </ul>
         <p>
