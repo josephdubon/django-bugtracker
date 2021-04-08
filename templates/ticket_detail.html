@@ -11,8 +11,8 @@
         <p>Ticket details:</p>
 
         {#    START NEW TICKETS HERE    #}
-        <table class="table table-bordered table-hover table-dark">
-            <thead>
+        <table class="table table-bordered table-hover table-light">
+            <thead class="thead-light">
             <tr>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
@@ -22,7 +22,7 @@
             </thead>
             <tbody>
             <tr>
-                <th scope="row"><a href="/tickets/{{ ticket.id }}">{{ ticket.title }}</a></th>
+                <th scope="row">{{ ticket.title }}</th>
                 <td>{{ ticket.description }}</td>
                 <td>{{ ticket.time_created }}</td>
                 <td><a
