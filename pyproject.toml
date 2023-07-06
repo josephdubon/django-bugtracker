@@ -6,7 +6,7 @@ authors = ["Joseph Dubon <josephdubon@pm.me>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Django = "^3.1.7"
+Django = "^3.1.14"
 
 [tool.poetry.dev-dependencies]
 
